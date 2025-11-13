@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Protect Eye</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <div>
+          <h1>Protect Eye</h1>
+          <p id="statusText" class="status">载入中...</p>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="masterToggle" />
+          <span class="slider"></span>
+        </label>
+      </header>
+
+      <section>
+        <h2>护眼预设</h2>
+        <div id="presetList" class="preset-list" role="listbox"></div>
+      </section>
+
+      <section class="slider-section">
+        <div class="section-title">
+          <h2>亮度/强度</h2>
+          <span id="intensityValue">0%</span>
+        </div>
+        <input type="range" min="0" max="75" value="40" step="1" id="intensityRange" />
+      </section>
+
+      <section class="color-picker">
+        <h2>自定义颜色</h2>
+        <div class="color-row">
+          <input type="color" id="customColorInput" />
+          <button id="useCustomColorBtn" class="ghost">使用当前颜色</button>
+        </div>
+      </section>
+
+      <section class="close-section">
+        <button id="customCloseBtn" class="primary custom-close-btn">自定义关闭</button>
+        <div id="closePanel" class="close-panel" role="dialog" hidden>
+          <div class="close-panel-header">
+            <div>
+              <strong>关闭策略</strong>
+              <p>选择需要的护眼关闭方式</p>
+            </div>
+            <button id="closePanelCloseBtn" class="icon-btn" aria-label="关闭自定义面板">×</button>
+          </div>
+          <div class="option">
+            <div>
+              <strong>一直关闭</strong>
+              <p>完全停用护眼模式，直到手动重新开启。</p>
+            </div>
+            <button id="offAlwaysBtn" class="ghost">确认</button>
+          </div>
+          <div class="option">
+            <div>
+              <strong>关闭特定时间</strong>
+              <p>到期后自动恢复护眼效果。</p>
+            </div>
+            <div class="inline wrap">
+              <select id="snoozeSelect">
+                <option value="15">15 分钟</option>
+                <option value="30" selected>30 分钟</option>
+                <option value="60">1 小时</option>
+                <option value="120">2 小时</option>
+                <option value="240">4 小时</option>
+              </select>
+              <button id="snoozeBtn">开始</button>
+              <button id="snoozeStopBtn" class="ghost secondary">提前结束</button>
+            </div>
+          </div>
+          <div class="option">
+            <div>
+              <strong>仅当前网站关闭</strong>
+              <p id="siteStatusText">需要当前网页地址</p>
+            </div>
+            <button id="siteToggleBtn" class="ghost">处理中</button>
+          </div>
+          <div class="option column">
+            <div class="row">
+              <strong>每天固定时段关闭</strong>
+              <label class="checkbox">
+                <input type="checkbox" id="dailyOffToggle" />
+                <span>启用</span>
+              </label>
+            </div>
+            <div class="inline time-row">
+              <input type="time" id="dailyStartInput" />
+              <span>至</span>
+              <input type="time" id="dailyEndInput" />
+              <button id="dailySaveBtn" class="ghost">保存</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="info-section">
+        <h2>提示</h2>
+        <ul>
+          <li>如需在某站点恢复护眼，请重新打开“仅当前网站”开关。</li>
+        </ul>
+      </section>
+    </main>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>
